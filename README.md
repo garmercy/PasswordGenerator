@@ -10,13 +10,13 @@ The main requirements are:
 * Generate a strong password that provides greater security.
 
 # How is it looks?
-## You can configurate the length of the password
+## You can configure the length of the password
 ![1](https://github.com/garmercy/PasswordGenerator/assets/138730100/a3aee3c3-55fc-4381-8d18-621e007e475e)
-## You can configurate if you password contains lowercase.
+## You can configure if you password contains lowercase.
 ![3](https://github.com/garmercy/PasswordGenerator/assets/138730100/dc6604b9-8a0e-43af-8f4d-c314d7b859a3)
-## You can configurate if you password contains uppercase.
+## You can configure if you password contains uppercase.
 ![4](https://github.com/garmercy/PasswordGenerator/assets/138730100/ed7dc29f-a223-4409-9e5a-1f870799fa1e)
-## You can configurate if you password contains symbols.
+## You can configure if you password contains symbols.
 ![5](https://github.com/garmercy/PasswordGenerator/assets/138730100/6ff31e3f-38ea-428c-a160-30d323f7c076)
 ## Final result of your password with all your requirements.
 ![6](https://github.com/garmercy/PasswordGenerator/assets/138730100/bd0b6ea3-fccc-478c-8aaa-1939da1708eb)
