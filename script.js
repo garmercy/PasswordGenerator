@@ -1,24 +1,39 @@
+// This var it is conected whin the bottom generate password.
 var generateBtn = document.querySelector("#generate");
+
+//Var upper it's the list of the uppercase alphabet that are used in the password.
 var lower = "abcdefghijklmnopqrstuvwxyz";
+
+//Var upper it's the list of the uppercase alphabet that are used in the password.
 var upper = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+
+//Var number it's the list of the numbers that are used in the password.
 var number = "0123456789";
+
+//Var number it's the list of the symbols that are used in the password.
 var symbol = "`~!@#$%^&*()_+-={}[]:;<>?',./";
-var userAnswers= [];
-var results=[];
 
 
-
-// The function generatePassword its divided in four main goals: lengthPassword, lowercase, symbol and uppercase
-// Then when this function its generate we validate the input and generate get the solution that it's showed in the Textbox
-
+// The function generatePassword return the password created with the user requirements.
 function generatePassword(){
+
+  //The stringPass its the final password that it is showed on the screen.
+  //Appears in line 106.
   let stringPass = "";
+
+  //typeChar it's the type of characters, and it is used to configurate aleatory the characters that are in the password.
+  //Appears in line 99.
   let typeChar;
+
+  //newChar it is the result of creating an aleatory character 
+  //Appears in line 104.
   let newChar;
+
+
+  //Using if and else, we register the user requirements for the future password (length,numbers,symbols,lowercase & uppercase).
   
-  console.log("Hello you clicked the bottom and the function its running");
-    
-  //First, we configurate the lenght of the password that has to be from number 8 to number 50.
+  //getLenght defines the password length. 
+  //If the user select another answer that its not a number between 8 to 128, 8 will be used as a minimun length by default. 
   let getLenght = prompt("Please enter the length of your password from 8 to 128");
   if (getLenght > 7 && getLenght< 129 ) {
     alert("Perfect " + getLenght + " it's the length of your password");
@@ -26,7 +41,8 @@ function generatePassword(){
     alert("Sorry, it's included 8 by default as a minimun lenght");
     getLenght=8;
   }
-      
+   
+  //getLower specifies  if the person prefers lowercase or not in the password.
   let getLower = prompt("Do you want lowercase in your password?");
   if (getLower === "yes" || getLower === "Yes" || getLower === "YES" ) {
     alert("Perfect you will have lowercase in your password");
@@ -35,7 +51,8 @@ function generatePassword(){
     alert("You won't have lower case");
     getLower=0;
   }
-      
+
+  //getUpper specifies  if the person prefers uppercase or not in the password.   
   let getUpper = prompt("Do you want uppercase in your password?");
   if (getUpper === "yes" || getUpper === "Yes" || getUpper === "YES") {
     alert("Perfect you will have uppercase in your password");
@@ -45,6 +62,7 @@ function generatePassword(){
     getUpper=0;
   }
 
+  //getNumber specifies  if the person prefers numbers or not in the password.  
   let getNumber = prompt("Do you want numbers in your password?");
   if (getNumber === "yes" || getNumber === "Yes" || getNumber === "YES") {
     alert("Perfect you will have numbers in your password");
@@ -54,6 +72,7 @@ function generatePassword(){
     getNumber=0;
   }
 
+  //getSymbol specifies  if the person prefer numbers or not in the password. 
   let getSymbol = prompt("Do you want symbols in your password?");
   if (getSymbol === "yes" || getSymbol === "Yes" || getSymbol === "YES") {
     alert("Perfect you will have symbols in your password");
@@ -62,23 +81,30 @@ function generatePassword(){
     alert("You won't have symbols.");
     getSymbol=0;
   }
-  //inicializacion del indice
+
+  //Starting while
+  //index initialization
   i = 0;
-  //Mientras el indice sea menor que el numero de caracteres seleccionado por el usuario
+
+  //This while will run if the index is less than the number of characters selected by the user.
+  //If the user select a length with more than 128 this while will run with only 8 characters by default.
+  //If the user don't select any symbol,number, uppercase or lowercase, then the result doesn't apply and the text box will be empty.
   while(i < getLenght){
-    //Genera un numero aleatorio entre el 0 y 3 para ver que tipo de caracter se va a insertar en contrasena
-    // 0: minisculas
-    // 1: mayusculas
-    // 2: numero
-    // 3: simbolo
+
+    //Generate a random number between 0 and 3 to see what type of character is going to be inserted in the password.
+    // 0: lowercase
+    // 1: uppercase
+    // 2: numbers
+    // 3: symbols
     typeChar = Math.floor(Math.random() * 4);
-    //Si aleatoriamente ha salido que hay que insertar una minuscula, y el usuario ha decidido insertar minusculas
+
+    //If it has randomly come up that a lowercase needs to be inserted, and the user has decided to insert lowercase.
     if (typeChar == 0 && getLower == 1){
-      //Genera un nuevo caracter seleccionando aleatoriamente dentro de la cadena lower cualquier caracter
+      //Generates a new character by randomly selecting from the string lower any character.
       newChar = lower[Math.floor(Math.random() * lower.length)];
-      //Concatena el nuevo caracter con la contrasena
+      //Concatenate the new character with the password
       stringPass = stringPass.concat(newChar);
-      //aumenta el valor del indice
+      // increases the index value
       i++;
     }else if(typeChar == 1 && getUpper == 1){
       newChar = upper[Math.floor(Math.random() * upper.length)];
@@ -93,30 +119,11 @@ function generatePassword(){
       stringPass = stringPass.concat(newChar);
       i++;
     }
-    console.log(stringPass); 
   }
-  console.log(stringPass); 
   return stringPass;
-
-    /*if (getLower == "yes" && getNumber == "yes" && getUpper == "yes" && getSymbol == "yes"){
-      CaseI=calculateLower()+calculateNumber()+calculateSymbol()+calculateUpper()
-      console.log(CaseI);
-      
-      for (var i = 0; i < getLenght; i++ ){
-      CaseII = [Math.floor(Math.random()*CaseI)];
-      }
-    }
-
-      console.log(CaseI);
-      console.log(FinalResult);*/
-
 }
-  // console.log(getLenght);
-  // console.log(getLower);
-  // console.log(getSymbol);
-  // console.log(getNumber);
-  
-  
+
+//This function constains the password created in generatePassword function and it is connected with the html file throught the query selector #password
 function writePassword() {
   let password = generatePassword();
   let passwordText = document.querySelector("#password");
@@ -127,146 +134,5 @@ function writePassword() {
 
 // Add event listener to generate button
 generateBtn.addEventListener("click", writePassword);
-
-
-
-// Funtion to generate a password
-// function generatePassword(){
-//   // If user pressed Cancel, immediately end function
-
-  
-
-// console.log = (characterNumber);
-//  let person = prompt("How many characters would you like your password to contain?");
-//   if (person != characterNumber){
-//     console.log("right");
-   
-//   }else{
-//     console.log("right");}
-    
-  
- 
-
-// }
-
-// PSEUDO CODING
-//have three blocks:
-
-
-  //First create number of password
-  
-  // a Password Length 8 <128
-  // if person type any number like 8 then the number of password its 8
-  //else its not a number close app
-
-
-  //Second include/no include lowercase
-  // if person click yes then include
-  // if person click no then not include
-
-
-  //Third include/no include symbols
-  // if person click yes then include
-  // if person click no then not include
-
-  //Second include/no include uyppercase
-  // if person click yes then include
-  // if person click no then not include
-
-  // Validate imput
-  //Generate password based on criteria
-
-  //Solution
-  // result =  numberpassword + lowercase + symbol +uppercase
-
-
-
-
-  // var passwordLength = lengthPassword();
-  // function lengthPassword(){
-  //   let number = prompt("Please enter the length of your password from 8 to 50");
-  //   if (number < 8 || number > 50 ) {
-  //   alert("Please type correcty from 5 to 30");
-  //   }else{
-  //     alert("Perfect " + number + " it's the length of your password");
-  //   }
-  //  } 
-
-
-
-
-
-  // function lenthpasswordnumber(){
-  //   let number = prompt("Please enter the length of your password from 5 to 50");
-  //   if (number > 4 && number < 51 ) {
-  //     alert("Perfect " + number + " it's the length of your password");
-  //   }else{
-  //     alert("Please type correcty from 5 to 50");
-  //   }
-  // }
-  // function gettinglowercase(){
-  //   let lower = prompt("Do you want in your password lowercase?");
-  //   if (lower === "yes" || lower === "Yes" || lower === "YES") {
-  //     alert("Perfect you will have lowercase in your password");
-  //   var loweryes = "yes you have lower";
-  //   console.log(loweryes);
-  //   }else{
-  //     alert("You won't have lower case. Otherwise type Yes, yes or YES");
-  //   var lowerno = "no you dont have lower";
-  //   console.log(lowerno);
-  //   }
-  // }
-  
-  // function gettinguppercase(){
-  //   let upper = prompt("Do you want in your password uppercase?");
-  //   if (upper === "yes" || upper === "Yes" || upper === "YES") {
-  //     alert("Perfect you will have uppercase in your password");
-  //   var upperyes = "yes you have upper";
-  //   console.log(upperyes);
-  //   }else{
-  //     alert("You won't have lower case. Otherwise type Yes, yes or YES");
-  //   var upperno = "no you haven't upper";
-  //   console.log(upperno);
-  //   }
-  // }
-  
-  // function gettingsymbols(){
-  //   let symbol = prompt("Do you want in your password symbols?");
-  //   if (symbol === "yes" || symbol === "Yes" || symbol === "YES") {
-  //     alert("Perfect you will have symbols in your password");
-  //   var symbolyes = "yes you have symbols";
-  //   console.log(symbolyes);
-  //   }else{
-  //     alert("You won't have symbols. Otherwise type Yes, yes or YES");
-  //   var symbolno = "no you haven't symbols";
-  //   console.log(symbolno);
-  //   }
-  // }
-
-
-  // function calculateLower() {
-   
-  //   var resultLower = lower[Math.floor(Math.random() * lower.length)];
-  //   console.log (resultLower);
-  // };
-  
-  // function calculateUpper() {
-   
-  //   var resultUpper = upper[Math.floor(Math.random() * upper.length)];
-  //   console.log (resultUpper);
-  // };
-  
-  // function calculateNumber() {
-   
-  //   var resultNumber = number[Math.floor(Math.random() * number.length)];
-  //   console.log (resultNumber);
-  // };
-  
-  // function calculateSymbol() {
-    
-  //   var resultSymbol = symbol[Math.floor(Math.random() * symbol.length)];
-  //   console.log (resultSymbol);
-  // };
-
 
 
